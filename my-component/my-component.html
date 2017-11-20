@@ -9,33 +9,46 @@
 <script>
   class MyComponent extends HTMLElement {
 
-    constructor(){
+    constructor() {
       super();
+      const shadowRoot = this.attachShadow({mode:'open'});
+      const doc = (document._currentScript || document.currentScript).ownerDocument;
+      const template = doc.querySelector( '#my-component' ).content;
+      const clone = doc.importNode( template, true );
+      this.shadowRoot.appendChild(clone);
     }
 
     // lifecycle hooks
 
-    connectedCallback(){
+    connectedCallback() {
       console.log('Custom element is inserted into the DOM!');
-      const doc = (document._currentScript || document.currentScript).ownerDocument;
-      const template = doc.querySelector( '#my-component' ).content;
-      const shadowRoot = this.attachShadow({mode:'open'});
-      const clone = doc.importNode( template, true );
-      shadowRoot.appendChild(clone);
     }
 
     disconnectedCallback() {
       console.log('Custom element is removed from the DOM!');
     }
 
+    applyNewColor(color) {
+      this.shadowRoot.querySelector('h1').style.color = color;
+    }
+
+    static get observedAttributes() {
+      return ['my-attribute'];
+    }
+
     attributeChangedCallback(attrName, oldVal, newVal) {
       console.log('Called whenever an attribute is added, removed or updated. ' +
         'Only attributes listed in the observedAttributes property are affected');
+      switch (attrName) {
+        case 'my-attribute':
+          this.applyNewColor(newVal);
+          break;
+      }
     }
 
 
 
-    adoptedCallback(){
+    adoptedCallback() {
       console.log('Called whenever the custom element has been moved into a new document');
     }
 
