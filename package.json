@@ -1,0 +1,26 @@
+{
+  "name": "webcomponents-workshop",
+  "version": "1.0.0",
+  "description": "Web Components Lecture and workshop material",
+  "main": "index.html",
+  "scripts": {
+    "present": "reveal-md presentation.md --theme solarized"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tikalk/webcomponents-workshop.git"
+  },
+  "keywords": [
+    "Web",
+    "Components"
+  ],
+  "author": "Tikal Knowledge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tikalk/webcomponents-workshop/issues"
+  },
+  "homepage": "https://github.com/tikalk/webcomponents-workshop#readme",
+  "devDependencies": {
+    "reveal-md": "^0.5.0"
+  }
+}
