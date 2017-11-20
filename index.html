@@ -1,38 +1,20 @@
 <html>
-    <head></head>
+    <head>
+        <link rel="import" href="my-component/my-component.html"> </link>
+    </head>
     <body>
         <h1>Welcome to web components workshop</h1>
         <h2 id="greeting"></h2>
         <hello-world></hello-world>
+        <my-component></my-component>
         <script>
           class HellowWorld extends HTMLElement {
-
             constructor(){
               super();
             }
-
-            // lifecycle hooks
-
             connectedCallback(){
               console.log('Custom element is inserted into the DOM!');
             }
-
-            disconnectedCallback() {
-              console.log('Custom element is removed from the DOM!');
-            }
-
-            attributeChangedCallback(attrName, oldVal, newVal) {
-              console.log('Called whenever an attribute is added, removed or updated. ' +
-                'Only attributes listed in the observedAttributes property are affected');
-            }
-
-
-
-            adoptedCallback(){
-              console.log('Called whenever the custom element has been moved into a new document');
-            }
-
-
           }
           customElements.define('hello-world', HellowWorld);
         </script>

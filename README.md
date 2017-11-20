@@ -1,13 +1,12 @@
 # webcomponents-workshop
 
-Step-1 
+Step-2 HTML Import and Templates
 
-- Create a new class called 'HellowWorld', the class should extend from HTMLElement.
-- Register your element as CustomElement by using customElements.define.
-- In order to consume your component import it by another html file by 
-  adding a link tag with following attributes: rel="import" href="index.html"
+- Lets create another component and this time we'll separate it from our main index into its own folder and html file.
+ - Lets import our component to index.html and use it under our previous <hello-world> component.
+- Now create a template for your new component using the template tag.
+
   
-  
-  Congrats! you've created your first web component, now open dev tools console and look for the lifecycle hooks prints!
+
 
 
