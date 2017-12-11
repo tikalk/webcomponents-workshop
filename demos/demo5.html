@@ -1,0 +1,40 @@
+<html>
+        <head>
+            <link rel="import" href="./demo-component-5.html" />
+            <style>
+                body {
+                    --default-color: blue;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Async + Custom Event</h1>
+            <ol>
+                <li>Id is set on custom element</li>
+                <li>attributeChangedCallback invoked - starting async chain</li>
+                <li>data fetched from server, custom elements self updates</li>
+                <li>custom element dispatches event</li>
+                <li>event captured in wrapper code</li>
+            </ol>
+            <hr />
+            <input type="text" placeholder="User ID" />
+            <button onclick="doit()">Submit</button>
+            <hr />
+            <div id="main">
+                <demo-component-5 onchange="handleChange(event)"></demo-component-4>
+            </div>
+            <hr />
+            
+            <script>
+                function doit() {
+                    const e = document.querySelector('demo-component-5');
+                    const value = document.querySelector('input').value;
+                    e.setAttribute('user-id', value);
+                }
+
+                function handleChange(event) {
+                    console.log(event.detail);
+                }
+            </script>
+        </body>
+    </html>

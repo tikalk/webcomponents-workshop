@@ -1,0 +1,23 @@
+<html>
+        <head>
+            <link rel="import" href="./demo-component-2.html" />
+        </head>
+        <body>
+            <h1>Custom Elements can receive properties</h1>
+    
+            <input type="text" placeholder="Enter name" />
+            <button onclick="doit()">Submit</button>
+            <hr />
+            <div id="main">
+                <demo-component-2></demo-component-2>
+            </div>
+    
+            <script>
+                function doit() {
+                    const e = document.querySelector('demo-component-2');
+                    const value = document.querySelector('input').value;
+                    e.myName = value;
+                }
+            </script>
+        </body>
+    </html>

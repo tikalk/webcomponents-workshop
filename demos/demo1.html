@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <link rel="import" href="./demo-component-1.html" />
+    </head>
+    <body>
+
+        <h1>Hello, Custom Elements</h1>
+
+        <button onclick="cleanup()">Clear</button>
+        <hr />
+        <div id="main">
+            <demo-component-1></demo-component-1>
+        </div>
+
+        <script>
+            function cleanup () {
+                const main = document.querySelector('#main');
+                main.innerHTML = '';
+            }
+        </script>
+    </body>
+</html>

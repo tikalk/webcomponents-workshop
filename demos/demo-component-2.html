@@ -1,0 +1,33 @@
+<script>
+        customElements.define('demo-component-2', class extends HTMLElement {
+    
+            constructor () {
+                super();
+                this._myName = 'Default value';
+            }
+
+            render () {
+                this.innerHTML = `<span>Hello, my name is ${this.myName}</span>`;
+            }
+
+            set myName(value) {
+                this._myName = value;
+                this.render();
+            }
+
+            get myName() {
+                return this._myName || '';
+            }
+    
+            connectedCallback () {
+                this.render();
+            }
+    
+            disconnectedCallback () {
+            }
+    
+            attributeChangedCallback (name, oldValue, newValue) {
+                console.log(name, oldValue, newValue);
+            }
+        })
+    </script>

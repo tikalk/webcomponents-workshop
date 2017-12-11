@@ -1,0 +1,22 @@
+<script>
+    customElements.define('demo-component-1', class extends HTMLElement {
+
+        constructor () {
+            super();
+            console.log('ctor');
+        }
+
+        connectedCallback () {
+            console.log('connected');
+            this.innerHTML = '<span>Hello, I am a first-class component</span>';
+        }
+
+        disconnectedCallback () {
+            console.log('disconnected');
+        }
+
+        attributeChangedCallback (name, oldValue, newValue) {
+            console.log(name, oldValue, newValue);
+        }
+    })
+</script>

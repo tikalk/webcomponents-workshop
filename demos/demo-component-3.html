@@ -1,0 +1,37 @@
+<script>
+        customElements.define('demo-component-3', class extends HTMLElement {
+    
+            constructor () {
+                super();
+            }
+
+            render () {
+                this.innerHTML = `<div>Hello, my name is <span>Default Value</span></div>`;
+            }
+
+            update () {
+                this.querySelector('span').textContent = this.myName;
+            }
+
+            get myName() {
+                return this.getAttribute('my-name');
+            }
+    
+            connectedCallback () {
+                this.render();
+            }
+    
+            disconnectedCallback () {
+            }
+
+            static get observedAttributes() {
+                return ['my-name'];
+            }
+    
+            attributeChangedCallback (name, oldValue, newValue) {
+                window.requestAnimationFrame( () => {
+                    this.update();
+                })
+            }
+        })
+    </script>

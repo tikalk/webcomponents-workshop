@@ -1,0 +1,29 @@
+<html>
+        <head>
+            <link rel="import" href="./demo-component-4.html" />
+        </head>
+        <body>
+            <h1>Bi-directional communication</h1>
+    
+            <input type="text" placeholder="Enter name" />
+            <button onclick="doit()">Submit</button>
+            <hr />
+            <div id="main">
+                <demo-component-4 onchange="handleChange(event)" my-name="Avichay" my-color="blue"></demo-component-4>
+            </div>
+            <hr />
+            <div id="monitor"></div>
+    
+            <script>
+                function doit() {
+                    const e = document.querySelector('demo-component-4');
+                    const value = document.querySelector('input').value;
+                    e.setAttribute('my-name', value);
+                }
+
+                function handleChange(event) {
+                    document.querySelector('#monitor').textContent = 'You selected: ' + event.currentTarget.getAttribute('my-color');
+                }
+            </script>
+        </body>
+    </html>

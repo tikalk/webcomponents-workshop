@@ -1,0 +1,70 @@
+<script>
+        customElements.define('demo-component-5', class extends HTMLElement {
+    
+            constructor () {
+                super();
+            }
+
+            setup () {
+                this.attachShadow({mode: 'open'});
+                this.shadowRoot.innerHTML = `
+                    <div id="root">
+                        <h1 id="name"></h1>
+                        <img id="image"></img>
+                        <div>
+                        <h2>Address</h2>
+                        <span id="street"></span>
+                        <span id="city"></span>
+                        <span id="state"></span>
+                        </div>
+                        <h2>Email</h2>
+                        <span id="email"></span>
+                    </div>
+                    <style>
+                        :host {
+                            font-family: monospace;
+                            color: var(--default-color);
+                        }
+                    </style>
+                `;
+                this.shadowRoot.querySelector('#root').style.display = 'none';
+            }
+
+            tearDown() {
+
+            }
+
+            update (data) {
+                const root = this.shadowRoot.querySelector('#root');
+                root.style.display = 'block';
+                root.querySelector('#name').textContent = `${data.name.title} ${data.name.first} ${data.name.last}`;
+                root.querySelector('#image').src = data.picture.large;
+                root.querySelector('#street').textContent = data.location.street;
+                root.querySelector('#city').textContent = data.location.city;
+                root.querySelector('#state').textContent = data.location.state;
+                root.querySelector('#email').textContent = data.email;
+                const event = new CustomEvent('change', {detail: data});
+                this.dispatchEvent(event);
+            }
+    
+            connectedCallback () {
+                this.setup();
+            }
+    
+            disconnectedCallback () {
+                this.tearDown();
+            }
+
+            static get observedAttributes() {
+                return ['user-id'];
+            }
+    
+            attributeChangedCallback (name, oldValue, newValue) {
+                if (oldValue !== newValue) {
+                    fetch(`https://randomuser.me/api/?seed=${newValue}`)
+                        .then(r => r.json())
+                        .then(r => this.update(r.results[0]));
+                }
+            }
+        })
+    </script>

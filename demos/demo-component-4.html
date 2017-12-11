@@ -1,0 +1,51 @@
+<script>
+        customElements.define('demo-component-4', class extends HTMLElement {
+    
+            constructor () {
+                super();
+            }
+
+            setup () {
+                this.innerHTML = `
+                    <div>Hello, my name is <span>Default Value</span></div>
+                    <select>
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                    </select>
+                `;
+                this.querySelector('select').addEventListener('change', (event) => {
+                    this.setAttribute('my-color', event.target.value);
+                });
+            }
+
+            tearDown() {
+
+            }
+    
+            connectedCallback () {
+                this.setup();
+            }
+    
+            disconnectedCallback () {
+                this.tearDown();
+            }
+
+            static get observedAttributes() {
+                return ['my-name', 'my-color'];
+            }
+    
+            attributeChangedCallback (name, oldValue, newValue) {
+                window.requestAnimationFrame( () => {
+                    switch (name) {
+                        case 'my-name':
+                            this.querySelector('span').textContent = newValue;
+                        break;
+                        case 'my-color':
+                            this.querySelector('select').value = newValue;
+                        break;
+                    }
+                })
+            }
+        })
+    </script>

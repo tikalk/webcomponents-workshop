@@ -1,0 +1,23 @@
+<html>
+        <head>
+            <link rel="import" href="./demo-component-3.html" />
+        </head>
+        <body>
+            <h1>Custom Elements can react to attributes</h1>
+    
+            <input type="text" placeholder="Enter name" />
+            <button onclick="doit()">Submit</button>
+            <hr />
+            <div id="main">
+                <demo-component-3 my-name="Avichay"></demo-component-3>
+            </div>
+    
+            <script>
+                function doit() {
+                    const e = document.querySelector('demo-component-3');
+                    const value = document.querySelector('input').value;
+                    e.setAttribute('my-name', value);
+                }
+            </script>
+        </body>
+    </html>
