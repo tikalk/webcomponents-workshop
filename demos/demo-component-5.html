@@ -17,10 +17,15 @@
                         <span id="city"></span>
                         <span id="state"></span>
                         </div>
+                        <slot name="external"></slot>
                         <h2>Email</h2>
                         <span id="email"></span>
                     </div>
                     <style>
+                        ::slotted(*) {
+                            color: red;
+                            font-weight: bold;
+                        }
                         :host {
                             font-family: monospace;
                             color: var(--default-color);
