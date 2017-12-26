@@ -24,7 +24,8 @@
                 <div>Custom element starts here</div>
 
                 <demo-component-5 onchange="handleChange(event)">
-                    <span slot="external">This is an external content</span>
+                    <span slot="external">This is an external content with [slot="external"]</span>
+                    <span>This will be rendered into the default slot (without slot attribute)</span>
                 </demo-component-5>
                 
                 <div>Custom element ends here</div>
