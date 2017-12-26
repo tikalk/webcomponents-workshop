@@ -8,7 +8,7 @@
             </style>
         </head>
         <body>
-            <h1>Async + Custom Event + Slots</h1>
+            <h1>Async + Custom Event + Shadow DOM + Slots + CSS Variables</h1>
             <ol>
                 <li>Id is set on custom element</li>
                 <li>attributeChangedCallback invoked - starting async chain</li>
@@ -21,9 +21,13 @@
             <button onclick="doit()">Submit</button>
             <hr />
             <div id="main">
+                <div>Custom element starts here</div>
+
                 <demo-component-5 onchange="handleChange(event)">
                     <span slot="external">This is an external content</span>
-                </demo-component-4>
+                </demo-component-5>
+                
+                <div>Custom element ends here</div>
             </div>
             <hr />
             

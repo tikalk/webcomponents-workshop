@@ -18,5 +18,9 @@
         attributeChangedCallback (name, oldValue, newValue) {
             console.log(name, oldValue, newValue);
         }
+
+        static get observedAttributes () {
+            return ['attr', 'other-attr']
+        }
     })
 </script>
