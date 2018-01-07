@@ -1,7 +1,11 @@
+function _random(x) {
+  return Math.floor(Math.random() * x);
+}
+
 
 class AwesomeApplication extends HTMLElement {
 
-  constructor() {
+  constructor () {
     super();
     console.log('I am an awesome application');
   }
@@ -13,8 +17,8 @@ class AwesomeApplication extends HTMLElement {
         <button id="add-user">Add User</button>
         <button id="add-toast">Pop important message</button>
       </div>
-      <div id="user-list">Users go here</div>
-      <div id="toasts-container">Toasts goes here</div>
+      <div id="user-list"></div>
+      <div id="toasts-container"></div>
     `;
   }
 
@@ -28,17 +32,38 @@ class AwesomeApplication extends HTMLElement {
 
   createToast () {
     // let's implements this
+      const message = this.createAwesomeMessage();
+      const toast = document.createElement('awesome-toast');
+      toast.message = message;
+      return toast;
   }
 
   connectedCallback () {
     // let's implement this
-    this.innerHTML = '<h1>Awesome App</h1>';
+    this.innerHTML = this.template;
+    this.querySelector('#add-user').onclick = this.addUser.bind(this);
+    this.querySelector('#add-toast').onclick = this.addToast.bind(this);
+  }
+
+  addUser () {
+    const e = this.querySelector('#user-list');
+    const id = Math.random().toString(16);
+    const userElement = document.createElement('awesome-user');
+    userElement.setAttribute('user-id', id);
+    e.appendChild(userElement);
+    userElement.addEventListener('user-selected', (e) => {
+      alert(e.detail.name + ' Selected');
+    })
+  }
+
+  addToast () {
+    const toast = this.createToast();
+    this.querySelector('#toasts-container').appendChild(toast);
   }
 
   disconnectedCallback () {
     // let's implement this
   }
-
 }
 
 customElements.define('awesome-application', AwesomeApplication);

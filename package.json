@@ -19,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/tikalk/webcomponents-workshop/issues"
   },
-  "homepage": "https://github.com/tikalk/webcomponents-workshop#readme",
-  "devDependencies": {
-    "reveal-md": "^0.5.0"
-  }
+  "homepage": "https://github.com/tikalk/webcomponents-workshop#readme"
 }

@@ -4,11 +4,22 @@
 class AwesomeToast extends HTMLElement {
 
   connectedCallback () {
-
+    this.style.display = 'block';
+    setTimeout(() => {
+      this.remove();
+    }, 3000);
   }
 
   disconnectedCallback () {
 
+  }
+
+  set message (value) {
+    this.innerText = value;
+  }
+
+  get message () {
+    return this.innerText;
   }
 
   static get observedAttributes () {
@@ -20,3 +31,5 @@ class AwesomeToast extends HTMLElement {
   }
 
 }
+
+customElements.define('awesome-toast', AwesomeToast);
