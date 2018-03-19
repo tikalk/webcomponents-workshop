@@ -44,3 +44,5 @@ class AwesomeUser extends HTMLElement {
   }
 
 }
+
+customElements.define('awesome-user', AwesomeUser);

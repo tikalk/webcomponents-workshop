@@ -20,3 +20,5 @@ class AwesomeToast extends HTMLElement {
   }
 
 }
+
+customElements.define('awesome-toast', AwesomeToast);
