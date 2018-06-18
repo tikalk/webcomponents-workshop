@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Web components tutorial 3 - Extending Native Elements</title>
+        <link rel="stylesheet" href="../assets/normalize.css">
+        <link rel="stylesheet" href="../assets/skeleton.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="./custom-element.js"></script>
+    </head>
+    <body class="container">
+        <h1>Tutorial 3: Extending Native Elements</h1>
+        <h2>Add custom behavior to existing native HTML elements</h2>
+        <p>
+            This example shows how to create a <strong>customized element</strong> - a custom element that extends native HTML element.
+            <br/>
+            Below, there is a SPAN element that is extended by a custom element, listening to key-up events, adding a word-count tag
+            <br/>
+            After the SPAN element, there is an extended INPUT element, showing dollar sign for every input and removing any non-digit character
+        </p>
+        <hr/>
+        <code>&lt;span is="word-count"&gt;</code>
+        <br/>
+        <span is="word-count">Hello, I'm an extended SPAN element! I am editable, click me and start typing.</span>
+        <br/>
+        <pre><code>
+            class WordCount extends HTMLSpanElement { ... };
+            customElements.define('word-count', WordCount, { extends: 'span' });
+        </code></pre>
+        <hr/>
+        <code>&lt;input is="dollar-input"&gt;</code>
+        <br/>
+        <input is="dollar-input">
+        <pre><code>
+            class DollarInput extends HTMLInputElement { ... };
+            customElements.define('dollar-input', DollarInput, { extends: 'input' });
+        </code></pre>
+    </body>
+</html>
