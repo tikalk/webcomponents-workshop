@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Web components tutorial - Getting Started</title>
+        <link rel="stylesheet" href="../assets/normalize.css">
+        <link rel="stylesheet" href="../assets/skeleton.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="./custom-element.js"></script>
+    </head>
+    <body class="container">
+        <h1>Tutorial 1: Getting Started</h1>
+        <h2>Creating and defining a custom element</h2>
+        <p>Open the console in the developer tools. Click "Add a custom element" to create and add the custom element into the DOM</p>
+
+        <button onclick="addCustomElement()">Add a custom element</button>
+        <button onclick="removeCustomElement()">Remove the custom element</button>
+        <hr/>
+        <label>Change attribute "my-name"</label><input type="text" id="changeMyName" />
+        <label>Change attribute "my-title"</label><input type="text" id="changeMyTitle" />
+        <hr/>
+        <button onclick="changeAttributes()">Change it</button>
+        
+        <script>
+            function addCustomElement () {
+                const customElementInstance = document.createElement('custom-element');
+                customElementInstance.id = "target";
+                document.body.appendChild(customElementInstance);
+                alert('Custom element was added to the DOM');
+            }
+
+            function removeCustomElement () {
+                const customElementInstance = document.getElementById('target');
+                if (customElementInstance) {
+                    customElementInstance.remove();
+                    alert('The custom element was removed from the DOM');
+                } else {
+                    alert('No custom elements found on the DOM');
+                }
+            }
+
+            function changeAttributes () {
+                const myNameValue = document.getElementById('changeMyName').value;
+                const myTitleValue = document.getElementById('changeMyTitle').value;
+                const customElementInstance = document.getElementById('target');
+                if (!customElementInstance) {
+                    alert('No custom elements found on the DOM');
+                } else {
+                    customElementInstance.setAttribute('my-name', myNameValue);
+                    customElementInstance.setAttribute('my-title', myTitleValue);
+                }
+            }
+        </script>
+    </body>
+</html>

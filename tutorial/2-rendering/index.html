@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Web components tutorial 2 - Rendering Content</title>
+        <link rel="stylesheet" href="../assets/normalize.css">
+        <link rel="stylesheet" href="../assets/skeleton.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="./custom-element.js"></script>
+    </head>
+    <body class="container">
+        <h1>Tutorial 2: Rendering content</h1>
+        <h2>Rendering content by values</h2>
+        <p>
+            The custom element renders with default values and watches it's own observed attributes.
+            <br/>
+            By changing the attributes the component will render itself again, with the updated values.
+        </p>
+        <hr/>
+        <label>Change attribute "my-name"</label><input type="text" id="changeMyName" />
+        <label>Change attribute "my-title"</label><input type="text" id="changeMyTitle" />
+        <hr/>
+        <button onclick="changeAttributes()">Change it</button>
+        <custom-element></custom-element>
+        <script>
+            function changeAttributes () {
+                const myNameValue = document.getElementById('changeMyName').value;
+                const myTitleValue = document.getElementById('changeMyTitle').value;
+                const customElementInstance = document.getElementsByTagName('custom-element')[0];
+                if (!customElementInstance) {
+                    alert('No custom elements found on the DOM');
+                } else {
+                    customElementInstance.setAttribute('my-name', myNameValue);
+                    customElementInstance.setAttribute('my-title', myTitleValue);
+                }
+            }
+        </script>
+    </body>
+</html>
