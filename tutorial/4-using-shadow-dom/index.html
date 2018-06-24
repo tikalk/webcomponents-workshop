@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Web components tutorial 4 - Shadow DOM</title>
+        <link rel="stylesheet" href="../assets/normalize.css">
+        <link rel="stylesheet" href="../assets/skeleton.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="./custom-element.js"></script>
+        <style>
+          :root {
+            --paragraph-color: darkgreen;
+            --paragraph-weight: bold;
+          }
+        </style>
+    </head>
+    <body class="container">
+        <h1>Tutorial 4: Shaodw DOM</h1>
+        <h2>Shadow DOM Encapsulates stylesheets</h2>
+        <p>
+            Stylesheets withing shadow DOM do not "bleed" to the application,
+            nor leak inside another shadow DOM.
+            When we write a custom elements that uses shadow DOM api, we enable the element to
+            use internal stylesheet and the <abbr>SLOT</abbr> api.</p>
+        <p>This <button>Button</button> is styled by the global document stylesheet.</p>
+        <p>The custom element's button is not affected.</p>
+        <hr/>
+        <custom-element></custom-element>
+        <br/>
+        <pre><code>
+            class CustomElement extends HTMLElement {
+              constructor () {
+                super();
+                this.attachShadow({mode: 'open'});
+                this.shadowRoot... // do whatever
+              }
+            };
+            customElements.define('custom-element', CustomElement);
+        </code></pre>
+        <p>Css variables can be passed through shadow DOM, very effective for theming or exposing style API for an element</p>
+        <p>Open the developer tools and see the documents style, and how it affects the custom element</p>
+    </body>
+</html>

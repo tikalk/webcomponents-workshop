@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Web components tutorial 5 - Shadow DOM and the SLOT API</title>
+        <link rel="stylesheet" href="../assets/normalize.css">
+        <link rel="stylesheet" href="../assets/skeleton.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="./custom-element.js"></script>
+        <style>
+          :root {
+            --paragraph-color: darkgreen;
+            --paragraph-weight: bold;
+          }
+        </style>
+    </head>
+    <body class="container">
+        <h1>Tutorial 5: Shadow DOM and the SLOT API</h1>
+        <h2>Using slots to render external content inside a shadow DOM</h2>
+        <p>The slot API enables a custom element to render provided children in targeted locations in the shadow DOM. These child elements will be styled by the host application, whereas the host custom element can provide additional style rules. In this example the black color is coming from the global document, and the border is added as a rule in the custom elements. The outcome is a combination of the styles.</p>
+        <hr/>
+        <custom-element><span>I'm a hosted span in a custom element's shadow</span></custom-element>
+        <hr/>
+        <pre><code>
+            class CustomElement extends HTMLElement {
+              constructor () {
+                super();
+                this.attachShadow({mode: 'open'});
+                this.shadowRoot.innerHTML = `......&lt;slot&gt;&lt;/slot&gt;.....`;
+              }
+            };
+            customElements.define('custom-element', CustomElement);
+        </code></pre>
+        <p>Defining slotted style rules is done in the host custom element in this form:</p>
+        <pre><code>
+            &lt;style&gt;
+              ::slotted(css-selector) {
+                css-rules...
+              }
+            &lt;/style&gt;
+        </code></pre>
+        <p>Open the developer tools and see how the example works</p>
+        <hr/>
+        <p>The slot API can be used with named slots, to place different child elements in different places as the following example shows</p>
+        <custom-element>
+          <span slot="header">I'm a span targeting "header" slot</span>
+          <span slot="footer">I'm a span targeting "footer" slot</span>
+          <span>I'm a hosted span in a custom element's shadow without a specific slot name</span>
+        </custom-element>
+        <hr/>
+        <p>A shadow DOM can contain many slots. A slot without a name is the "default" slot, where children without a slot name will be rendered.</p>
+    </body>
+</html>
